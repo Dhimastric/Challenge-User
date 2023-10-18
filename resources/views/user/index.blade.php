@@ -17,7 +17,7 @@
         <div class="my-4 p-4 bg-body rounded shadow-md">
             {{-- Button Modal --}}
             <button type="button" class="btn btn-primary" id="button-modal">
-                + Tambah Data
+                + Add Data
             </button>
 
             {{-- Table --}}
@@ -42,16 +42,50 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
+                            <h5 class="modal-title">User</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <p>Modal body text goes here.</p>
+                        <div class="modal-body mb-4">
+                            <form class="row g-3">
+                                <div class="col-12">
+                                    <label for="inputName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="inputName" name="name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="inputEmail" name="email">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPhone" class="form-label">Phone</label>
+                                    <input type="text" class="form-control" id="inputPhone" name="phone">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputAddress" class="form-label">Address</label>
+                                    <textarea class="form-control" rows="2" id="inputAddress" placeholder="1234 Main St" name="address"></textarea>
+                                </div>
+                                <div class="col-6">
+                                    <label for="inputPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="inputPassword" name="password">
+                                </div>
+                                <div class="col-6">
+                                    <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="inputConfirmPassword"
+                                        name="confirm-password">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputRole" class="form-label">Role</label>
+                                    <select id="inputRole" class="form-select" name="role">
+                                        <option selected>Choose Role...</option>
+                                        <option>...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary" id="save" name="save">Save</button>
                         </div>
                     </div>
                 </div>
@@ -60,49 +94,7 @@
         </div>
     </div>
 
-    {{-- ========================================================================================================= --}}
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#userTable').DataTable({
-                processing: true,
-                serverside: true,
-                ajax: "{{ url('userAjax') }}",
-                columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
-                }, {
-                    data: 'name',
-                    name: 'Name',
-                }, {
-                    data: 'email',
-                    name: 'Email',
-                }, {
-                    data: 'role',
-                    name: 'Role',
-                }, {
-                    data: 'action',
-                    name: 'Action',
-                }]
-            });
-        });
-
-        $('body').on('click', '#button-modal', function(e) {
-            e.preventDefault();
-            $('#modal-form').modal('show');
-        });
-    </script>
+    @include('user.script')
 </body>
 
 </html>
