@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Challenge</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -42,11 +44,13 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">User</h5>
+                            <h5 class="modal-title">Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body mb-4">
+                            <div class="alert alert-danger d-none" id="alertForm" role="alert"></div>
+
                             <form class="row g-3">
                                 <div class="col-12">
                                     <label for="inputName" class="form-label">Name</label>
@@ -62,23 +66,18 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="inputAddress" class="form-label">Address</label>
-                                    <textarea class="form-control" rows="2" id="inputAddress" placeholder="1234 Main St" name="address"></textarea>
+                                    <textarea class="form-control" rows="2" id="inputAddress" name="address"></textarea>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label for="inputPassword" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="inputPassword" name="password">
-                                </div>
-                                <div class="col-6">
-                                    <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control" id="inputConfirmPassword"
-                                        name="confirm-password">
                                 </div>
                                 <div class="col-12">
                                     <label for="inputRole" class="form-label">Role</label>
                                     <select id="inputRole" class="form-select" name="role">
-                                        <option selected>Choose Role...</option>
-                                        <option>...</option>
-                                        <option>...</option>
+                                        <option value="0">Choose Role...</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
                                     </select>
                                 </div>
                             </form>
